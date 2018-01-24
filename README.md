@@ -1,4 +1,4 @@
-Role Name
+nerdfonts
 =========
 
 Cross-platform ansible role for NerdFonts installation.
