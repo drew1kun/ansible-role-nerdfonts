@@ -1,0 +1,11 @@
+---
+nerdfonts_env: 'system'  # 'system' | 'user' | users'
+
+nerdfonts_deb_fonts_sys_dir: '/usr/local/share/fonts'
+nerdfonts_deb_fonts_user_dir: '~/.local/share/fonts'
+
+nerdfonts_users:
+  - drew
+  - pi
+
+...

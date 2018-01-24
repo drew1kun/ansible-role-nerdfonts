@@ -1,0 +1,40 @@
+---
+# tasks file for ansible-nerdfonts
+
+- name: '[Darwin] Include Dependencies Installation playbook'
+  include_tasks: dependencies.yml
+  become: no
+  tags:
+      - nerdfonts
+      - nerdfonts_dependencies
+
+- name: '[Darwin] Tap caskroom/fonts'
+  homebrew_tap: name=caskroom/fonts state=present
+  become: no
+  tags:
+    - nerdfonts
+
+- name: '[Darwin] Install Nerd Fonts with homebrew cask'
+  homebrew_cask:
+    name:
+      - "{{ item.caskname }}"
+    state: present
+    update_homebrew: yes
+  with_items: "{{ nerdfonts_fonts }}"
+  become: no
+  tags:
+    - nerdfonts
+
+- name: '[Darwin] Install Mono Nerd Fonts with homebrew cask'
+  homebrew_cask:
+    name:
+      - "{{ item.caskname_mono }}"
+    state: present
+    update_homebrew: yes
+  with_items: "{{ nerdfonts_fonts }}"
+  when: nerdfonts_mono
+  become: no
+  tags:
+    - nerdfonts
+
+...

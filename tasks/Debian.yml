@@ -1,0 +1,111 @@
+---
+- name: '[Debian] Include Dependencies installation tasks'
+  include_tasks: dependencies.yml
+  become: yes
+  tags:
+    - nerdfonts
+    - nerdfonts_dependencies
+
+- name: '[Debian] Include Debian-specific variables'
+  include_vars: Debian.yml
+  tags:
+    - nerdfonts
+
+- name: '[Debian] Clone the nerdfonts repo'
+  git:
+    repo: https://github.com/ryanoasis/nerd-fonts.git
+    dest: "{{ ansible_env.HOME }}/nerd_fonts"
+    depth: 1
+  tags:
+    - nerdfonts
+
+# INSTALLER IS BROKEN
+#- name: '[Debian] Install nerdfonts'
+#  command: "~/nerd_fonts/install.sh {{ item.value.fontname }}"
+#  with_items: "{{ nerdfonts_fonts }}"
+#  tags:
+#    - nerdfonts
+
+- name: '[Debian] Setting nerdfonts_install_dir for system-wide installation'
+  set_fact:
+    nerdfonts_install_dir: "{{ nerdfonts_deb_fonts_sys_dir }}"
+  when: nerdfonts_env is defined and nerdfonts_env  == 'system'
+  tags:
+    - nerdfonts
+
+- name: '[Debian] Setting nerdfonts_install_dir for user-specific installation'
+  set_fact:
+    nerdfonts_install_dir: "{{ nerdfonts_deb_fonts_user_dir }}"
+  when: nerdfonts_env is defined and (nerdfonts_env == 'user' or nerdfonts_env == 'users')
+  tags:
+    - nerdfonts
+
+- name: '[Debian] Create NerdFonts folder for system-wode installation'
+  file:
+    path: "{{ nerdfonts_install_dir }}/NerdFonts"
+    state: directory
+  when: nerdfonts_env is defined and nerdfonts_env == 'system'
+  tags:
+    - nerdfonts
+
+- name: '[Debian] Create NerdFonts folder for each user'
+  file:
+    path: "{{ nerdfonts_install_dir }}/NerdFonts"
+    state: directory
+  with_items: "{{ nerdfonts_users }}"
+  become: yes
+  become_user: "{{ item }}"
+  become_method: su
+  when: nerdfonts_env is defined and (nerdfonts_env == 'user' or nerdfonts_env == 'users')
+  tags:
+    - nerdfonts
+
+- name: '[Debian] Check if there are any NerdFonts already installed'
+  stat:
+    path: "{{ nerdfonts_install_dir }}/NerdFonts/{{ item.fontname }}"
+  with_items: "{{ nerdfonts_fonts }}"
+  register: nerdfonts_stat
+  tags:
+    - nerdfonts
+
+- name: '[Debian] Combine the results into dictionary with following structure: {<FontName> : <stat.exists>}'
+  set_fact:
+    # https://stackoverflow.com/questions/35605603/using-ansible-set-fact-to-create-a-dictionary-from-register-results
+    # FLATTENING THE RESULTS AND COMBINING THEM INTO DICTIONARY WITH SPECIFIED KEY:VALUE STRUCTURE:
+    #
+    # IF nerdfonts_fonts IS DICTIONARY:
+    # nerdfonts_exists: "{{ nerdfonts_exists|default({}) | combine( {item.item.value.fontname: item.stat.exists} ) }}"
+    # IF nerdfonts_fonts IS LIST:
+    nerdfonts_exists: "{{ nerdfonts_exists|default({}) | combine( {item.item.fontname: item.stat.exists} ) }}"
+  with_items: "{{ nerdfonts_stat.results }}"
+  tags:
+    - nerdfonts
+
+- name: '[Debian] Copy fonts for system-wide installation'
+  command: "cp -r {{ ansible_env.HOME}}/nerd_fonts/patched-fonts/{{ item.key }} {{ nerdfonts_install_dir }}/NerdFonts/"
+  become: yes
+  with_dict: "{{ nerdfonts_exists }}"
+  when: item.value == false
+  tags:
+    - nerdfonts
+
+- name: '[Debian] Copy fonts for user-specific installation'
+  command: "cp -r {{ ansible_env.HOME}}/nerd_fonts/patched-fonts/{{ item.key }} {{ nerdfonts_install_dir }}/NerdFonts/"
+  with_dict: "{{ nerdfonts_exists }}"
+  become: yes
+  become_user: "{{ item }}"
+  become_method: su
+  when:
+    - nerdfonts_env is defined and (nerdfonts_env == 'user' or nerdfonts_env == 'users')
+    - item.value == false
+  tags:
+    - nerdfonts
+
+- name: '[Debian] Install specified NerdFonts'
+  command: "fc-cache -f {{ nerdfonts_install_dir }}"
+  # https://stackoverflow.com/questions/47523815/ansible-how-to-check-if-dictionary-has-at-least-one-specified-value
+  # Execute command only when some dictionary contains at least one 'false' value:
+  when: false in nerdfonts_exists.values()
+  tags:
+    - nerdfonts
+...

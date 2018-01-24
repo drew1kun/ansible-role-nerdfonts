@@ -1,0 +1,8 @@
+---
+# tasks file for ansible-nerdfonts
+
+- name: "[main] Include {{ ansible_os_family }}-specific playbook"
+  include_tasks: "{{ ansible_os_family }}.yml"
+  tags:
+    - nerdfonts
+...
