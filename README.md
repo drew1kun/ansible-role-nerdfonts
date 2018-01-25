@@ -21,7 +21,8 @@ OS-Agnostic:
          caskname_mono:          # name of mono nerdfont in homebrew cask (for MacOS)
 
 MacOS-Specific:
- - nerdfonts_mono: yes | no  - install mono font from homebrew cask
+
+    - nerdfonts_mono: yes | no   # install mono font from homebrew cask
 
 Dependencies
 ------------
