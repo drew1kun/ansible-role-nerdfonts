@@ -1,4 +1,4 @@
-nerdfonts
+Ansible role: nerdfonts
 =========
 
 [![MIT licensed][mit-badge]][mit-link]
