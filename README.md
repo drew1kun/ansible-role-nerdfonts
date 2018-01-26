@@ -1,5 +1,7 @@
 nerdfonts
 =========
+[![MIT licensed][mit-badge]]
+[![Galaxy Role][role-badge]][galaxy-link]
 
 Cross-platform ansible role for NerdFonts installation.
 
@@ -8,7 +10,7 @@ Requirements
 
 One of the following OS (or deriviatives):
  - Debian | Ubuntu
- - MacOS (with homebrew)
+ - MacOS (with ![Homebrew][homebrew])
 
 Role Variables
 --------------
@@ -34,7 +36,7 @@ MacOS-Specific:
 Dependencies
 ------------
 
-For MacOS if Homebrew is not installed, depends on:
+For MacOS if ![Homebrew][homebrew] is not installed, depends on:
  - drew-kun.homebrew
 
 Install via galaxy:
@@ -46,7 +48,7 @@ Example Playbook
 
     - hosts: deb_clients
       roles:
-         - Drewshg312.nerdfonts
+         - drew-kun.nerdfonts
 
 License
 -------
@@ -57,3 +59,8 @@ Author Information
 ------------------
 
 ![Andrew Shagayev](drewshg@gmail.com)
+
+[galaxy-link]: https://galaxy.ansible.com/drew-kun/nerdfonts/
+[homebrew]: http://brew.sh/
+[mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[mit-link]: https://raw.githubusercontent.com/geerlingguy/ansible-role-homebrew/master/LICENSE
