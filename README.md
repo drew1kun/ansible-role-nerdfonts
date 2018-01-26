@@ -35,7 +35,7 @@ Dependencies
 ------------
 
 For MacOS hosts:
- - drewshg312.homebrew
+ - drew-kun.homebrew
 
 Example Playbook
 ----------------
