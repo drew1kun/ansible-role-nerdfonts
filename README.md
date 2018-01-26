@@ -42,7 +42,7 @@ Example Playbook
 
     - hosts: deb_clients
       roles:
-         - drewshg312.nerdfonts
+         - Drewshg312.nerdfonts
 
 License
 -------
