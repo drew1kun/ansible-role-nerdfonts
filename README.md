@@ -61,9 +61,8 @@ Author Information
 
 ![Andrew Shagayev](drewshg@gmail.com)
 
-[mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[role-badge]: https://img.shields.io/ansible/role/1858.svg
+[role-badge]: https://img.shields.io/badge/role-drew--kun.nerdfonts-green.svg
 [galaxy-link]: https://galaxy.ansible.com/drew-kun/nerdfonts/
-[homebrew]: http://brew.sh/
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [mit-link]: https://raw.githubusercontent.com/geerlingguy/ansible-role-homebrew/master/LICENSE
+[homebrew]: http://brew.sh/
