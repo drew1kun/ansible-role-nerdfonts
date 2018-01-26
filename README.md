@@ -13,9 +13,14 @@ One of the following OS (or deriviatives):
  - Debian | Ubuntu
  - MacOS (with [Homebrew][homebrew])
 
-For MacOS if Homebrew is not installed, install the following role via galaxy and include it in the playbook:
+For MacOS if Homebrew is not installed, install the following role via galaxy:
 
     ansible-galaxy install drew-kun.homebrew
+
+ And include it in the playbook:
+
+    roles:
+        - drew-kun.homebrew
 
 Role Variables
 --------------
@@ -41,14 +46,15 @@ MacOS-Specific:
 Dependencies
 ------------
 
-does not depend on other roles
+Does not depend on other roles
 
 Example Playbook
 ----------------
 
-    - hosts: deb_clients
+    - hosts: dev_clients_macos
       roles:
-         - drew-kun.nerdfonts
+        - drew-kun.homebrew
+        - drew-kun.nerdfonts
 
 License
 -------
