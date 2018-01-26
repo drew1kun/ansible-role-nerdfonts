@@ -8,7 +8,7 @@ Requirements
 
 One of the following OS (or deriviatives):
  - Debian | Ubuntu
- - MacOS
+ - MacOS (with homebrew)
 
 Role Variables
 --------------
@@ -34,8 +34,12 @@ MacOS-Specific:
 Dependencies
 ------------
 
-For MacOS hosts:
+For MacOS if Homebrew is not installed, depends on:
  - drew-kun.homebrew
+
+Install via galaxy:
+
+    ansible-galaxy install drew-kun.homebrew
 
 Example Playbook
 ----------------
@@ -53,3 +57,4 @@ Author Information
 ------------------
 
 Andrew Shagayev
+drewshg@gmail.com
