@@ -1,7 +1,7 @@
 nerdfonts
 =========
 
-[![MIT licensed][mit-badge]
+[![MIT licensed][mit-badge]][mit-link]
 [![Galaxy Role][role-badge]][galaxy-link]
 
 Cross-platform ansible role for NerdFonts installation.
