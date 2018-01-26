@@ -11,7 +11,7 @@ Requirements
 
 One of the following OS (or deriviatives):
  - Debian | Ubuntu
- - MacOS (with ![Homebrew][homebrew])
+ - MacOS (with [Homebrew][homebrew])
 
 Role Variables
 --------------
@@ -37,7 +37,7 @@ MacOS-Specific:
 Dependencies
 ------------
 
-For MacOS if ![Homebrew][homebrew] is not installed, depends on:
+For MacOS if [Homebrew][homebrew] is not installed, depends on:
  - drew-kun.homebrew
 
 Install via galaxy:
