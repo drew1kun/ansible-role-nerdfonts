@@ -29,20 +29,20 @@ Debian-Specific:
 
 MacOS-Specific:
 
-    - nerdfonts_mono: yes | no   # install mono font from homebrew cask
+    - nerdfonts_mono: yes | no      # install mono font from homebrew cask
 
 Dependencies
 ------------
 
 For MacOS hosts:
- - homebrew
+ - drewshg312.homebrew
 
 Example Playbook
 ----------------
 
     - hosts: deb_clients
       roles:
-         - nerdfonts
+         - drewshg312.nerdfonts
 
 License
 -------
