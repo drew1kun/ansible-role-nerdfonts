@@ -47,7 +47,7 @@ MacOS-Specific:
 Dependencies
 ------------
 
-Does not depend on other roles
+None
 
 Example Playbook
 ----------------
@@ -60,7 +60,7 @@ Example Playbook
 License
 -------
 
-MIT
+[MIT][mit-link]
 
 Author Information
 ------------------
