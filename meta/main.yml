@@ -10,7 +10,7 @@ galaxy_info:
   github_branch: master
 
   platforms:
-   - name: MacOS
+   - name: MacOSX
      versions:
        - all
    - name: Debian
