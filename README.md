@@ -4,7 +4,7 @@ Ansible role: nerdfonts
 [![MIT licensed][mit-badge]][mit-link]
 [![Galaxy Role][role-badge]][galaxy-link]
 
-Cross-platform ansible role for [NerdFonts][nerdfonts] (https://github.com/ryanoasis/nerd-fonts) installation.
+Cross-platform ansible role for [NerdFonts][nerdfonts] ([on GitHub][nf-git]) installation.
 
 Requirements
 ------------
@@ -73,3 +73,4 @@ Andrew Shagayev
 [mit-link]: https://raw.githubusercontent.com/drew-kun/ansible-nerdfonts/master/LICENSE
 [homebrew]: http://brew.sh/
 [nerdfonts]: https://nerdfonts.com/
+[nf-git]: https://github.com/ryanoasis/nerd-fonts
