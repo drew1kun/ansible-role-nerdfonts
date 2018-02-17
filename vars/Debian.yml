@@ -6,6 +6,5 @@ nerdfonts_deb_fonts_user_dir: '~/.local/share/fonts'
 
 nerdfonts_users:
   - drew
-  - pi
-
+  - root
 ...
