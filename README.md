@@ -35,14 +35,18 @@ OS-Agnostic:
 
 Debian-Specific:
 
-    nerdfonts_env: system | user/users    # install fonts system- or user-wide
-    nerdfonts_deb_fonts_sys_dir:          # system-wide fonts directory
-    nerdfonts_deb_fonts_user_dir:         # user-specific fonts directory
-    nerdfonts_users:                      # list of users nerdfonts to be installed
+| Variable | Description | Default |
+|----------|-------------|---------|
+| **nerdfonts_env** | install fonts system- or user-wide | `system` |
+| **nerdfonts_deb_fonts_sys_dir** | system-wide fonts directory | `/usr/local/share/fonts` |
+| **nerdfonts_deb_fonts_user_dir** | user-specific fonts directory | `~/.local/share/fonts` |
+| **nerdfonts_users** | list of users nerdfonts to be installed | see *vars/Debian.yml* |
 
 MacOS-Specific:
 
-    nerdfonts_mono: yes | no              # install mono font from homebrew cask
+| Variable | Description | Default |
+|----------|-------------|---------|
+| **nerdfonts_mono** | install mono font from homebrew cask | `no` |
 
 Dependencies
 ------------
