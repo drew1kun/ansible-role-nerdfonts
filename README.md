@@ -30,7 +30,7 @@ OS-Agnostic:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| **nerdfonts_fonts** | list of nerdfonts to be installed | see *defaults/main.yml* |
+| **nerdfonts_fonts** | list of nerdfonts to be installed | see [`defaults/main.yml`](defaults/main.yml) |
 
 Debian-Specific:
 
@@ -39,7 +39,7 @@ Debian-Specific:
 | **nerdfonts_env** | install fonts system- or user-wide | `system` |
 | **nerdfonts_deb_fonts_sys_dir** | system-wide fonts directory | `/usr/local/share/fonts` |
 | **nerdfonts_deb_fonts_user_dir** | user-specific fonts directory | `~/.local/share/fonts` |
-| **nerdfonts_users** | list of users nerdfonts to be installed | see *vars/Debian.yml* |
+| **nerdfonts_users** | list of users nerdfonts to be installed | see [`vars/Debian.yml`](vars/Debian.yml) |
 
 MacOS-Specific:
 
