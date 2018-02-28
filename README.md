@@ -30,7 +30,7 @@ OS-Agnostic:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| **nerdfonts_fonts** | list of nerdfonts to be installed | see *defaults/mail.yml* |
+| **nerdfonts_fonts** | list of nerdfonts to be installed | see *defaults/main.yml* |
 
 Debian-Specific:
 
