@@ -28,10 +28,9 @@ Role Variables
 
 OS-Agnostic:
 
-    nerdfonts_fonts:                      # list of nerdfonts to be installed
-     - fontname:                          # name of nerdfont
-       caskname:                          # name of nerdfont in homebrew cask (for MacOS)
-       caskname_mono:                     # name of mono nerdfont in homebrew cask (for MacOS)
+| Variable | Description | Default |
+|----------|-------------|---------|
+| **nerdfonts_fonts** | list of nerdfonts to be installed | see *defaults/mail.yml* |
 
 Debian-Specific:
 
