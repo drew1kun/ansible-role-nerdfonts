@@ -9,6 +9,8 @@ Cross-platform ansible role for [NerdFonts][nerdfonts] ([on GitHub][nf-git]) ins
 Requirements
 ------------
 
+NOTE: Role requires Fact Gathering by ansible!
+
 One of the following OS (or deriviatives):
  - Debian | Ubuntu
  - MacOS (with [Homebrew][homebrew])
@@ -56,6 +58,7 @@ Example Playbook
 ----------------
 
     - hosts: dev_clients_macos
+      gather_facts: yes
       roles:
         - drew-kun.homebrew
         - drew-kun.nerdfonts
