@@ -22,6 +22,7 @@
     update_homebrew: yes
   with_items: "{{ nerdfonts_fonts }}"
   become: no
+  ignore_errors: yes
   tags:
     - nerdfonts
 
@@ -34,6 +35,7 @@
   with_items: "{{ nerdfonts_fonts }}"
   when: nerdfonts_mono
   become: no
+  ignore_errors: yes
   tags:
     - nerdfonts
 

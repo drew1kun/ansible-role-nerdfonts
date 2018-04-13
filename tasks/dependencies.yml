@@ -1,12 +1,9 @@
 ---
+# note: 'become: yes'(for Linux) or 'become: no'(for MacOS) included in OS-specific playbooks under 'include_tasks'
 - name: '[Dependencies] Install Dependencies for NerdFonts'
   package:
     name:
       - fontconfig
       - git
     state: present
-  # note: 'become: yes'(for Linux) or 'become: no'(for MacOS) included in OS-specific playbooks under 'include_tasks'
-  tags:
-    - nerdfonts
-    - nerdfonts_dependencies
 ...
