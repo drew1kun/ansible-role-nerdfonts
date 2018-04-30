@@ -14,29 +14,50 @@
 - name: '[Debian] Clone the nerdfonts repo'
   git:
     repo: https://github.com/ryanoasis/nerd-fonts.git
-    dest: "{{ ansible_env.HOME }}/nerd_fonts"
+    dest: /tmp/nerd_fonts
     depth: 1
   tags:
     - nerdfonts
 
 # INSTALLER IS BROKEN
-#- name: '[Debian] Install nerdfonts'
-#  command: "~/nerd_fonts/install.sh {{ item.value.fontname }}"
+#- name: '[Debian] Install nerdfonts system-wide'
+#  command: "/tmp/nerd_fonts/install.sh -S {{ item.value.fontname }}"
 #  with_items: "{{ nerdfonts_fonts }}"
+#  when:
+#   - nerdfonts_deb_env is defined
+#   - nerdfonts_deb_env  == 'system'
+#  tags:
+#    - nerdfonts
+#
+#- name: '[Debian] Install nerdfonts for each user'
+#  command: "/tmp/nerd_fonts/install.sh -U {{ item[0].value.fontname }}"
+#  become: yes
+#  become_user: "{{ item[1] }}"
+#  with_nested:
+#    - "{{ nerdfonts_fonts }}"
+#    - "{{ nerdfonts_deb_users }}"
+#  when:
+#    - nerdfonts_deb_env is defined
+#    - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users'
 #  tags:
 #    - nerdfonts
 
+#===================== FIX ========================
 - name: '[Debian] Setting nerdfonts_install_dir for system-wide installation'
   set_fact:
     nerdfonts_install_dir: "{{ nerdfonts_deb_fonts_sys_dir }}"
-  when: nerdfonts_env is defined and nerdfonts_env  == 'system'
+  when:
+    - nerdfonts_deb_env is defined
+    - nerdfonts_deb_env  == 'system'
   tags:
     - nerdfonts
 
 - name: '[Debian] Setting nerdfonts_install_dir for user-specific installation'
   set_fact:
     nerdfonts_install_dir: "{{ nerdfonts_deb_fonts_user_dir }}"
-  when: nerdfonts_env is defined and (nerdfonts_env == 'user' or nerdfonts_env == 'users')
+  when:
+    - nerdfonts_deb_env is defined
+    - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users'
   tags:
     - nerdfonts
 
@@ -44,7 +65,9 @@
   file:
     path: "{{ nerdfonts_install_dir }}/NerdFonts"
     state: directory
-  when: nerdfonts_env is defined and nerdfonts_env == 'system'
+  when:
+    - nerdfonts_deb_env is defined
+    - nerdfonts_deb_env == 'system'
   tags:
     - nerdfonts
 
@@ -52,11 +75,13 @@
   file:
     path: "{{ nerdfonts_install_dir }}/NerdFonts"
     state: directory
-  with_items: "{{ nerdfonts_users }}"
+  with_items: "{{ nerdfonts_deb_users }}"
   become: yes
   become_user: "{{ item }}"
   become_method: su
-  when: nerdfonts_env is defined and (nerdfonts_env == 'user' or nerdfonts_env == 'users')
+  when:
+    - nerdfonts_deb_env is defined
+    - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users')
   tags:
     - nerdfonts
 
@@ -82,7 +107,7 @@
     - nerdfonts
 
 - name: '[Debian] Copy fonts for system-wide installation'
-  command: "cp -r {{ ansible_env.HOME}}/nerd_fonts/patched-fonts/{{ item.key }} {{ nerdfonts_install_dir }}/NerdFonts/"
+  command: "cp -r /tmp/nerd_fonts/patched-fonts/{{ item.key }} {{ nerdfonts_install_dir }}/NerdFonts/"
   become: yes
   with_dict: "{{ nerdfonts_exists }}"
   when: item.value == false
@@ -90,13 +115,14 @@
     - nerdfonts
 
 - name: '[Debian] Copy fonts for user-specific installation'
-  command: "cp -r {{ ansible_env.HOME}}/nerd_fonts/patched-fonts/{{ item.key }} {{ nerdfonts_install_dir }}/NerdFonts/"
+  command: "cp -r /tmp/nerd_fonts/patched-fonts/{{ item.key }} {{ nerdfonts_install_dir }}/NerdFonts/"
   with_dict: "{{ nerdfonts_exists }}"
   become: yes
   become_user: "{{ item }}"
   become_method: su
   when:
-    - nerdfonts_env is defined and (nerdfonts_env == 'user' or nerdfonts_env == 'users')
+    - nerdfonts_deb_env is defined
+    - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users'
     - item.value == false
   tags:
     - nerdfonts
@@ -108,4 +134,5 @@
   when: false in nerdfonts_exists.values()
   tags:
     - nerdfonts
+#==================================================
 ...

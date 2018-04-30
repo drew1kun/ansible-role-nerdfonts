@@ -15,28 +15,17 @@
     - nerdfonts
 
 - name: '[Darwin] Install Nerd Fonts with homebrew cask'
-  homebrew_cask:
-    name:
-      - "{{ item.caskname }}"
-    state: present
-    update_homebrew: yes
-  with_items: "{{ nerdfonts_fonts }}"
+  homebrew_cask: name="{{ item.caskname }}" state=upgraded update_homebrew=yes install_options=force
   become: no
-  ignore_errors: yes
+  with_items: "{{ nerdfonts_fonts }}"
   tags:
     - nerdfonts
 
 - name: '[Darwin] Install Mono Nerd Fonts with homebrew cask'
-  homebrew_cask:
-    name:
-      - "{{ item.caskname_mono }}"
-    state: present
-    update_homebrew: yes
+  homebrew_cask: name="{{ item.mono }}" state=upgraded update_homebrew=yes install_options=force
+  become: no
   with_items: "{{ nerdfonts_fonts }}"
   when: nerdfonts_mono
-  become: no
-  ignore_errors: yes
   tags:
     - nerdfonts
-
 ...
