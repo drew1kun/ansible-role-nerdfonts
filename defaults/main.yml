@@ -8,6 +8,8 @@
 #
 nerdfonts_mono: no  # yes | no -- install mono variant of the font from homebrew cask on MacOS.
 
+nerdfonts_users: [ "{{ ansible_user_id }}", root ]
+
 nerdfonts_fonts:
 #  - fontname: '3270'
 #    caskname: 'font-3270-nerd-font'

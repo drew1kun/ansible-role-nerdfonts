@@ -35,7 +35,7 @@
 #  become_user: "{{ item[1] }}"
 #  with_nested:
 #    - "{{ nerdfonts_fonts }}"
-#    - "{{ nerdfonts_deb_users }}"
+#    - "{{ nerdfonts_users }}"
 #  when:
 #    - nerdfonts_deb_env is defined
 #    - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users'
@@ -75,7 +75,7 @@
   file:
     path: "{{ nerdfonts_install_dir }}/NerdFonts"
     state: directory
-  with_items: "{{ nerdfonts_deb_users }}"
+  with_items: "{{ nerdfonts_users }}"
   become: yes
   become_user: "{{ item }}"
   become_method: su

@@ -15,9 +15,13 @@
     - nerdfonts
 
 - name: '[Darwin] Install Nerd Fonts with homebrew cask'
-  homebrew_cask: name="{{ item.caskname }}" state=upgraded update_homebrew=yes install_options=force
-  become: no
-  with_items: "{{ nerdfonts_fonts }}"
+  homebrew_cask: name="{{ item[0].caskname }}" state=upgraded update_homebrew=yes install_options=force
+  become: yes
+  become_user: "{{ item[1] }}"
+  with_nested:
+    - "{{ nerdfonts_fonts }}"
+    - "{{ nerdfonts_users }}"
+  when: item[1] != 'root'
   tags:
     - nerdfonts
 
