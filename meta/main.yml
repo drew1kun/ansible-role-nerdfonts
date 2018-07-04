@@ -18,10 +18,10 @@ galaxy_info:
        - jessie
 
   galaxy_tags:
-    - Nerdfonts
-    - Debian
-    - MacOS
-    - OSX
+    - nerdfonts
+    - debian
+    - macos
+    - osx
 
 dependencies: []
 ...
