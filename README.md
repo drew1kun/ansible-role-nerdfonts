@@ -20,12 +20,12 @@ NOTE:
 For MacOS:
 if Homebrew is not installed on the managed host, install the following role via galaxy:
 
-   ansible-galaxy install drew_kun.homebrew
+   ansible-galaxy install drew-kun.homebrew
 
  And include it in the playbook:
 
     roles:
-        - drew_kun.homebrew
+        - drew-kun.homebrew
 
 Role Variables
 --------------
@@ -62,8 +62,8 @@ Example Playbook
     - hosts: dev_clients_macos
       gather_facts: yes
       roles:
-        - drew_kun.homebrew
-        - drew_kun.nerdfonts
+        - drew-kun.homebrew
+        - drew-kun.nerdfonts
 
 License
 -------
@@ -75,10 +75,10 @@ Author Information
 
 Andrew Shagayev | [e-mail](mailto:drewshg@gmail.com)
 
-[role-badge]: https://img.shields.io/badge/role-drew__kun.nerdfonts-green.svg
-[galaxy-link]: https://galaxy.ansible.com/drew_kun/nerdfonts/
+[role-badge]: https://img.shields.io/badge/role-drew--kun.nerdfonts-green.svg
+[galaxy-link]: https://galaxy.ansible.com/drew-kun/nerdfonts/
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[mit-link]: https://raw.githubusercontent.com/drew_kun/ansible-nerdfonts/master/LICENSE
+[mit-link]: https://raw.githubusercontent.com/drew-kun/ansible-nerdfonts/master/LICENSE
 [homebrew]: http://brew.sh/
 [nerdfonts]: https://nerdfonts.com/
 [nf-git]: https://github.com/ryanoasis/nerd-fonts
