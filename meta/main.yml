@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: nerdfonts
   author: Andrew Shagayev
   description: The role installs nerdfonts (http://nerdfonts.com/)
 
