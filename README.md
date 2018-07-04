@@ -75,10 +75,10 @@ Author Information
 
 Andrew Shagayev | [e-mail](mailto:drewshg@gmail.com)
 
-[role-badge]: https://img.shields.io/badge/role-drew--kun.nerdfonts-green.svg
+[role-badge]: https://img.shields.io/badge/role-drew__kun.nerdfonts-green.svg
 [galaxy-link]: https://galaxy.ansible.com/drew_kun/nerdfonts/
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[mit-link]: https://raw.githubusercontent.com/drew-kun/ansible-nerdfonts/master/LICENSE
+[mit-link]: https://raw.githubusercontent.com/drew_kun/ansible-nerdfonts/master/LICENSE
 [homebrew]: http://brew.sh/
 [nerdfonts]: https://nerdfonts.com/
 [nf-git]: https://github.com/ryanoasis/nerd-fonts
