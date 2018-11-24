@@ -20,7 +20,7 @@ NOTE:
 For MacOS:
 if Homebrew is not installed on the managed host, install the following role via galaxy:
 
-   ansible-galaxy install drew-kun.homebrew
+    ansible-galaxy install drew-kun.homebrew
 
  And include it in the playbook:
 
