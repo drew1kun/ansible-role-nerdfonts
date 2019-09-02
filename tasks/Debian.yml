@@ -81,7 +81,7 @@
   become_method: su
   when:
     - nerdfonts_deb_env is defined
-    - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users')
+    - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users'
   tags:
     - nerdfonts
 
