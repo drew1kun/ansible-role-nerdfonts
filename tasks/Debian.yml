@@ -1,6 +1,7 @@
 ---
-- name: '[Debian] Include Dependencies installation tasks'
-  include_tasks: dependencies.yml
+- block:
+  - name: '[Debian] Include Dependencies installation tasks'
+    include_tasks: dependencies.yml
   become: yes
   tags:
     - nerdfonts
