@@ -3,6 +3,5 @@
 
 - name: "[main] Include {{ ansible_os_family }}-specific tasks"
   include_tasks: "{{ ansible_os_family }}.yml"
-  tags:
-  - nerdfonts
+  tags: nerdfonts
 ...
