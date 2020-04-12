@@ -5,31 +5,39 @@
   import_tasks: dependencies.yml
   become: no
   tags:
-      - nerdfonts
-      - nerdfonts_dependencies
+  - nerdfonts
+  - nerdfonts_dependencies
 
 - name: '[Darwin] Tap caskroom/fonts'
   homebrew_tap: name=homebrew/cask-fonts state=present
   become: no
   tags:
-    - nerdfonts
+  - nerdfonts
 
 - name: '[Darwin] Install Nerd Fonts with homebrew cask'
-  homebrew_cask: name="{{ item[0].caskname }}" state=upgraded update_homebrew=yes install_options=force
+  homebrew_cask: 
+    name: "{{ item[0].caskname }}" 
+    state: upgraded 
+    update_homebrew: yes 
+    install_options: force
   become: yes
   become_user: "{{ item[1] }}"
   with_nested:
-    - "{{ nerdfonts_fonts }}"
-    - "{{ nerdfonts_users }}"
+  - "{{ nerdfonts_fonts }}"
+  - "{{ nerdfonts_users }}"
   when: item[1] != 'root'
   tags:
-    - nerdfonts
+  - nerdfonts
 
 - name: '[Darwin] Install Mono Nerd Fonts with homebrew cask'
-  homebrew_cask: name="{{ item.mono }}" state=upgraded update_homebrew=yes install_options=force
+  homebrew_cask:
+    name: "{{ item.mono }}"
+    state: upgraded 
+    update_homebrew: yes 
+    install_options: force
   become: no
   with_items: "{{ nerdfonts_fonts }}"
   when: nerdfonts_mono
   tags:
-    - nerdfonts
+  - nerdfonts
 ...

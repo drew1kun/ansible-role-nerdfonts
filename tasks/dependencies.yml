@@ -3,7 +3,9 @@
 - name: '[Dependencies] Install Dependencies for NerdFonts'
   package:
     name:
-      - fontconfig
-      - git
+    - fontconfig
+    - git
     state: present
+  tags:
+  - nerdfonts
 ...
