@@ -1,13 +1,13 @@
 ---
-- name: '[Debian] Include Dependencies installation tasks'
-  include_tasks: dependencies.yml
+- name: '[Debian] Import Dependencies installation tasks'
+  import_tasks: dependencies.yml
   become: yes
   tags:
     - nerdfonts
     - nerdfonts_dependencies
 
-- name: '[Debian] Include Debian-specific variables'
-  include_vars: Debian.yml
+- name: '[Debian] Import Debian-specific variables'
+  import_vars: Debian.yml
   tags:
     - nerdfonts
 
