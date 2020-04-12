@@ -6,6 +6,8 @@
     - fontconfig
     - git
     state: present
+  register: nerdfonts_deps_install_result
+  until: nerdfonts_deps_install_result is succeeded
   tags:
   - nerdfonts
 ...

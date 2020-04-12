@@ -8,16 +8,14 @@
 
 - name: '[Debian] Import Debian-specific variables'
   import_vars: Debian.yml
-  tags:
-  - nerdfonts
+  tags: nerdfonts
 
 - name: '[Debian] Clone the nerdfonts repo'
   git:
     repo: https://github.com/ryanoasis/nerd-fonts.git
     dest: /tmp/nerd_fonts
     depth: 1
-  tags:
-  - nerdfonts
+  tags: nerdfonts
 
 # INSTALLER IS BROKEN
 #- name: '[Debian] Install nerdfonts system-wide'
@@ -25,9 +23,8 @@
 #  with_items: "{{ nerdfonts_fonts }}"
 #  when:
 #  - nerdfonts_deb_env is defined
-#  - nerdfonts_deb_env  == 'system'
-#  tags:
-#  - nerdfonts
+#  - "'system' in nerdfonts_deb_env"
+#  tags: nerdfonts
 #
 #- name: '[Debian] Install nerdfonts for each user'
 #  command: "/tmp/nerd_fonts/install.sh -U {{ item[0].fontname }}"
@@ -38,9 +35,8 @@
 #  - "{{ nerdfonts_users }}"
 #  when:
 #  - nerdfonts_deb_env is defined
-#  - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users'
-#  tags:
-#  - nerdfonts
+#  - "'user' in nerdfonts_deb_env"
+#  tags: nerdfonts
 
 #===================== FIX ========================
 - name: '[Debian] Setting nerdfonts_install_dir for system-wide installation'
@@ -48,18 +44,16 @@
     nerdfonts_install_dir: "{{ nerdfonts_deb_fonts_sys_dir }}"
   when:
   - nerdfonts_deb_env is defined
-  - nerdfonts_deb_env  == 'system'
-  tags:
-  - nerdfonts
+  - "'system' in nerdfonts_deb_env"
+  tags: nerdfonts
 
 - name: '[Debian] Setting nerdfonts_install_dir for user-specific installation'
   set_fact:
     nerdfonts_install_dir: "{{ nerdfonts_deb_fonts_user_dir }}"
   when:
   - nerdfonts_deb_env is defined
-  - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users'
-  tags:
-  - nerdfonts
+  - "'user' in nerdfonts_deb_env"
+  tags: nerdfonts
 
 - name: '[Debian] Create NerdFonts folder for system-wode installation'
   file:
@@ -68,9 +62,8 @@
   become: yes
   when:
   - nerdfonts_deb_env is defined
-  - nerdfonts_deb_env == 'system'
-  tags:
-  - nerdfonts
+  - "'system' in nerdfonts_deb_env"
+  tags: nerdfonts
 
 - name: '[Debian] Create NerdFonts folder for each user'
   file:
@@ -82,17 +75,15 @@
   become_method: su
   when:
   - nerdfonts_deb_env is defined
-  - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users'
-  tags:
-  - nerdfonts
+  - "'user' in nerdfonts_deb_env"
+  tags: nerdfonts
 
 - name: '[Debian] Check if there are any NerdFonts already installed'
   stat:
     path: "{{ nerdfonts_install_dir }}/NerdFonts/{{ item.fontname }}"
   with_items: "{{ nerdfonts_fonts }}"
   register: nerdfonts_stat
-  tags:
-  - nerdfonts
+  tags: nerdfonts
 
 - name: '[Debian] Combine the results into dictionary with following structure: {<FontName> : <stat.exists>}'
   set_fact:
@@ -104,16 +95,14 @@
     # IF nerdfonts_fonts IS LIST:
     nerdfonts_exists: "{{ nerdfonts_exists|default({}) | combine( {item.item.fontname: item.stat.exists} ) }}"
   with_items: "{{ nerdfonts_stat.results }}"
-  tags:
-  - nerdfonts
+  tags: nerdfonts
 
 - name: '[Debian] Copy fonts for system-wide installation'
   command: "cp -r /tmp/nerd_fonts/patched-fonts/{{ item.key }} {{ nerdfonts_install_dir }}/NerdFonts/"
   become: yes
   with_dict: "{{ nerdfonts_exists }}"
   when: item.value == false
-  tags:
-  - nerdfonts
+  tags: nerdfonts
 
 - name: '[Debian] Copy fonts for user-specific installation'
   command: "cp -r /tmp/nerd_fonts/patched-fonts/{{ item.key }} {{ nerdfonts_install_dir }}/NerdFonts/"
@@ -123,17 +112,15 @@
   become_method: su
   when:
   - nerdfonts_deb_env is defined
-  - nerdfonts_deb_env == 'user' or nerdfonts_deb_env == 'users'
+  - "'user' in nerdfonts_deb_env"
   - item.value == false
-  tags:
-  - nerdfonts
+  tags: nerdfonts
 
 - name: '[Debian] Install specified NerdFonts'
   command: "fc-cache -f {{ nerdfonts_install_dir }}"
   # https://stackoverflow.com/questions/47523815/ansible-how-to-check-if-dictionary-has-at-least-one-specified-value
   # Execute command only when some dictionary contains at least one 'false' value:
   when: false in nerdfonts_exists.values()
-  tags:
-  - nerdfonts
+  tags: nerdfonts
 #==================================================
 ...
