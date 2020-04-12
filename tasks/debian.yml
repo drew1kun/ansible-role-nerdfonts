@@ -1,7 +1,7 @@
 ---
 - name: '[debian] Import Debian-specific variables'
-  include_vars: debian.yml
-  #import_vars: debian.yml
+  #include_vars: debian.yml
+  import_vars: debian.yml
   tags: nerdfonts
 
 - name: '[debian] Clone the nerdfonts repo'
