@@ -1,8 +1,8 @@
 ---
 # tasks file for ansible-nerdfonts
 
-- name: '[Darwin] Include Dependencies Installation playbook'
-  include_tasks: dependencies.yml
+- name: '[Darwin] Import Dependencies Installation playbook'
+  import_tasks: dependencies.yml
   become: no
   tags:
       - nerdfonts
