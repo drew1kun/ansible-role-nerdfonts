@@ -1,6 +1,6 @@
 ---
 - name: '[Dependencies] Install Dependencies for NerdFonts on Darwin systems'
-  package:
+  homebrew:
     name:
     - fontconfig
     - git
