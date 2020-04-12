@@ -1,5 +1,17 @@
 ---
-# note: 'become: yes'(for Linux) or 'become: no'(for MacOS) included in OS-specific playbooks under 'include_tasks'
+- name: '[Dependencies] Install Dependencies for NerdFonts'
+  apt:
+    name:
+    - fontconfig
+    - git
+    state: present
+  register: nerdfonts_deps_install_result
+  until: nerdfonts_deps_install_result is succeeded
+  become: yes
+  when: "'Debian' in ansible_os_family"
+  tags:
+  - nerdfonts
+
 - name: '[Dependencies] Install Dependencies for NerdFonts'
   package:
     name:
@@ -8,6 +20,8 @@
     state: present
   register: nerdfonts_deps_install_result
   until: nerdfonts_deps_install_result is succeeded
+  become: no
+  when: "'Darwin' in ansible_os_family"
   tags:
   - nerdfonts
 ...
