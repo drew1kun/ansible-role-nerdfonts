@@ -40,7 +40,7 @@ Debian-Specific:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| **nerdfonts_env** | Install fonts system- or user-wide | `system` |
+| **nerdfonts_deb_env** | Install fonts system- or user-wide | `system` |
 | **nerdfonts_deb_fonts_sys_dir** | System-wide fonts directory | `/usr/local/share/fonts` |
 | **nerdfonts_deb_fonts_user_dir** | User-specific fonts directory | `~/.local/share/fonts` |
 | **nerdfonts_users[]** | List of users nerdfonts to be installed | see [`vars/debian.yml`](vars/debian.yml) |
