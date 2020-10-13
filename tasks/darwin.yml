@@ -1,36 +1,16 @@
 ---
 # tasks file for ansible-nerdfonts
 
-- name: '[darwin] Tap caskroom/fonts'
-  homebrew_tap: name=homebrew/cask-fonts state=present
-  become: no
-  tags:
-  - nerdfonts
-
 - name: '[darwin] Install Nerd Fonts with homebrew cask'
   homebrew_cask:
-    name: "{{ item[0].caskname }}"
-    state: upgraded
-    update_homebrew: yes
-    install_options: force
+    name: "{{ item[0].name }}"
+    state: present
   become: yes
   become_user: "{{ item[1] }}"
   with_nested:
   - "{{ nerdfonts_fonts }}"
   - "{{ nerdfonts_users }}"
   when: item[1] != 'root'
-  tags:
-  - nerdfonts
-
-- name: '[darwin] Install Mono Nerd Fonts with homebrew cask'
-  homebrew_cask:
-    name: "{{ item.mono }}"
-    state: upgraded
-    update_homebrew: yes
-    install_options: force
-  become: no
-  with_items: "{{ nerdfonts_fonts }}"
-  when: nerdfonts_mono
   tags:
   - nerdfonts
 ...

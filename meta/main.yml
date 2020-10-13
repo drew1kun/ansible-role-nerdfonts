@@ -11,18 +11,21 @@ galaxy_info:
   github_branch: master
 
   platforms:
-   - name: MacOSX
-     versions:
-       - all
-   - name: Debian
-     versions:
-       - jessie
+  - name: MacOSX
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - jessie
 
   galaxy_tags:
-    - nerdfonts
-    - debian
-    - macos
-    - osx
+  - nerdfonts
+  - debian
+  - macos
+  - osx
 
-dependencies: []
+# commented this because I usually run homebrew role separately.
+#dependencies:
+#- role: geerlingguy.homebrew
+#  when: "'Darwin' in ansible_os_family"
 ...

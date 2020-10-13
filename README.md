@@ -20,12 +20,12 @@ NOTE:
 For MacOS:
 if Homebrew is not installed on the managed host, install the following role via galaxy:
 
-    ansible-galaxy install drew-kun.homebrew
+    ansible-galaxy install geerlingguy.homebrew
 
  And include it in the playbook:
 
     roles:
-        - drew-kun.homebrew
+    - geerlingguy.homebrew
 
 Role Variables
 --------------
@@ -35,21 +35,15 @@ OS-Agnostic:
 | Variable | Description | Default |
 |----------|-------------|---------|
 | **nerdfonts_fonts[]** | List of nerdfonts to be installed | see [`defaults/main.yml`](defaults/main.yml) |
+| **nerdfonts_users[]** | List of users nerdfonts to be installed | see [`vars/debian.yml`](vars/debian.yml) |
 
 Debian-Specific:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| **nerdfonts_env** | Install fonts system- or user-wide | `system` |
+| **nerdfonts_deb_env** | Install fonts system- or user-wide | `system` |
 | **nerdfonts_deb_fonts_sys_dir** | System-wide fonts directory | `/usr/local/share/fonts` |
 | **nerdfonts_deb_fonts_user_dir** | User-specific fonts directory | `~/.local/share/fonts` |
-| **nerdfonts_users[]** | List of users nerdfonts to be installed | see [`vars/Debian.yml`](vars/Debian.yml) |
-
-MacOS-Specific:
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| **nerdfonts_mono** | Install mono font from homebrew cask | `no` |
 
 Dependencies
 ------------
@@ -63,7 +57,7 @@ Example Playbook
 - hosts: dev_clients_macos
   gather_facts: yes
   roles:
-  - drew-kun.homebrew
+  - geerlingguy.homebrew
   - drew-kun.nerdfonts
 ```
 
