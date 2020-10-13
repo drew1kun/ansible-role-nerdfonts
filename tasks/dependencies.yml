@@ -1,4 +1,12 @@
 ---
+- name: '[Dependencies] Accept XCode License on Darwin systems'
+  command: xcodebuild -license accept
+  become: yes
+  when: "'Darwin' in ansible_os_family"
+  changed_when: false
+  tags:
+  - nerdfonts
+
 - name: '[Dependencies] Install Dependencies for NerdFonts on Darwin systems'
   homebrew:
     name:
