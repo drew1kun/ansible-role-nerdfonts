@@ -32,4 +32,3 @@
   when: "'Debian' in ansible_os_family"
   tags:
   - nerdfonts
-...

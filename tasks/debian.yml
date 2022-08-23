@@ -116,4 +116,3 @@
   when: false in nerdfonts_exists.values()
   tags: nerdfonts
 #==================================================
-...

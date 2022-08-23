@@ -13,4 +13,3 @@
   when: item[1] != 'root'
   tags:
   - nerdfonts
-...
