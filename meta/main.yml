@@ -2,29 +2,19 @@
 galaxy_info:
   role_name: nerdfonts
   author: Andrew Shagayev
-  description: The role installs nerdfonts (http://nerdfonts.com/)
-
+  description: Ansible role that installs nerdfonts (http://nerdfonts.com/).
   license: MIT
-
   min_ansible_version: 1.2
-
   github_branch: master
-
   platforms:
-  - name: MacOSX
-    versions:
-    - all
-  - name: Debian
-    versions:
-    - jessie
-
+    - name: MacOSX
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - jessie
   galaxy_tags:
-  - nerdfonts
-  - debian
-  - macos
-  - osx
-
-# commented this because I usually run homebrew role separately.
-#dependencies:
-#- role: geerlingguy.homebrew
-#  when: "'Darwin' in ansible_os_family"
+    - nerdfonts
+    - debian
+    - macos
+    - osx
